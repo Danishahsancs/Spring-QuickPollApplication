@@ -1,14 +1,18 @@
 package io.zipcoder.tc_spring_poll_application.dto.error;
 
+import java.util.List;
+import java.util.Map;
+
 public class ErrorDetail {
+    private String title;
+    private int status;
+    private String detail;
+    private long timeStamp;
+    private String developerMessage;
 
-    private String title;           // e.g., "Resource Not Found"
-    private int status;             // e.g., 404
-    private String detail;          // e.g., "Poll with id 5 not found"
-    private long timeStamp;         // e.g., System.currentTimeMillis()
-    private String developerMessage; // e.g., exception class name or stack trace
+    // NEW FIELD
+    private Map<String, List<ValidationError>> errors;
 
-    // Getters and setters
     public String getTitle() {
         return title;
     }
@@ -47,5 +51,13 @@ public class ErrorDetail {
 
     public void setDeveloperMessage(String developerMessage) {
         this.developerMessage = developerMessage;
+    }
+
+    public Map<String, List<ValidationError>> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(Map<String, List<ValidationError>> errors) {
+        this.errors = errors;
     }
 }

@@ -12,6 +12,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 @RestController
 public class PollController {
 
@@ -31,7 +33,7 @@ public class PollController {
 
     // POST a new poll
     @RequestMapping(value="/polls", method=RequestMethod.POST)
-    public ResponseEntity<?> createPoll(@RequestBody Poll poll) {
+    public ResponseEntity<?> createPoll(@Valid @RequestBody Poll poll) {
 
         poll = pollRepository.save(poll);
 
@@ -58,7 +60,7 @@ public class PollController {
 
     // UPDATE a poll
     @RequestMapping(value="/polls/{pollId}", method=RequestMethod.PUT)
-    public ResponseEntity<?> updatePoll(@RequestBody Poll poll, @PathVariable Long pollId) {
+    public ResponseEntity<?> updatePoll(@Valid @RequestBody Poll poll, @PathVariable Long pollId) {
         // Optionally, you could validate pollId matches poll.getId()
         verifyPoll(pollId);
         pollRepository.save(poll);

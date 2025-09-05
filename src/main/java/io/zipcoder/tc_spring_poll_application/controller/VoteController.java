@@ -2,6 +2,9 @@ package io.zipcoder.tc_spring_poll_application.controller;
 
 import io.zipcoder.tc_spring_poll_application.domain.Vote;
 import io.zipcoder.tc_spring_poll_application.repositories.VoteRepository;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,7 +24,7 @@ public class VoteController {
 
     // POST a new vote for a specific poll
     @RequestMapping(value = "/polls/{pollId}/votes", method = RequestMethod.POST)
-    public ResponseEntity<?> createVote(@PathVariable Long pollId, @RequestBody Vote vote) {
+    public ResponseEntity<?> createVote(@PathVariable Long pollId, @Valid @RequestBody Vote vote) {
         vote = voteRepository.save(vote);
 
         // Build the location URI for the newly created vote
